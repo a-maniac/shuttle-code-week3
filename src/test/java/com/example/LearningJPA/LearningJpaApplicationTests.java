@@ -22,9 +22,9 @@ class LearningJpaApplicationTests {
 
 	@Test
 	void testRepository(){
-		Product product=Product.builder().sku("nestle")
-						.title("nestle chochlate").price(BigDecimal.valueOf(13.22))
-						.quantity(4).build();
+		Product product=Product.builder().sku("nestles")
+						.title("nestle chochlate").price(BigDecimal.valueOf(23.42))
+						.quantity(1).build();
 		Product savedProduct=productRepository.save(product);
 		System.out.println(savedProduct);
 	}
@@ -34,5 +34,12 @@ class LearningJpaApplicationTests {
 		List<Product> productList=productRepository.findAll();
 		System.out.println(productList);
 	}
+
+	@Test
+	void getBySKU(){
+		Product product=productRepository.findBySku("nestles");
+		System.out.println(product);
+	}
+
 
 }
