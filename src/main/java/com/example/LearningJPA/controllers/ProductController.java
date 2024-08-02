@@ -27,7 +27,7 @@ public class ProductController {
     }
 
     @GetMapping(path="/usingSortBy")
-    List<Product> getProductUsingSortBY(@RequestParam(defaultValue = "id") String sku){
-        return productRepository.findAll(Sort.by(Sort.Order.desc(String.valueOf(sku))));
+    List<Product> getProductUsingSortBY(@RequestParam(defaultValue = "id") String sortBy){
+        return productRepository.findAll(Sort.by(Sort.Order.desc(String.valueOf(sortBy))));
     }
 }
