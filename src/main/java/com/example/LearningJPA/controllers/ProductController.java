@@ -3,6 +3,9 @@ package com.example.LearningJPA.controllers;
 
 import com.example.LearningJPA.entities.Product;
 import com.example.LearningJPA.repositories.ProductRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,5 +32,12 @@ public class ProductController {
     @GetMapping(path="/usingSortBy")
     List<Product> getProductUsingSortBY(@RequestParam(defaultValue = "id") String sortBy){
         return productRepository.findAll(Sort.by(Sort.Order.desc(String.valueOf(sortBy))));
+    }
+
+    @GetMapping(path="/findAll")
+    Page<Product> getAllProducts(){
+
+        Pageable pageable= PageRequest.of(1,2);
+        return productRepository.findAll(pageable);
     }
 }
