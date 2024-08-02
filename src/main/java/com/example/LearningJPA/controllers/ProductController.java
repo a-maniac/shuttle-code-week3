@@ -35,9 +35,9 @@ public class ProductController {
     }
 
     @GetMapping(path="/findAll")
-    Page<Product> getAllProducts(){
+    List<Product> getAllProducts(){
 
         Pageable pageable= PageRequest.of(0,2);
-        return productRepository.findAll(pageable);
+        return productRepository.findAll(pageable).getContent();
     }
 }
